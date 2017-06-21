@@ -136,21 +136,20 @@ def process_image(image_ori):
     #image_White_Lines = np.copy(image) * 0  # creating a blank to draw white lines on
     #image_All_Lines = np.copy(image) * 0  # creating a blank to draw yellow lines on
 
-
     # plt.imshow(image)
     image = region_of_interest(image_ori, RoI_Vertices)
     image = color_region(image, RGB_Threshold_All_Line)
 
-    #plt.imsave(imageOutputFolder + n + '-01.jpg', image)
-
-    image = gaussian_blur(image, kernel_size)
 
     image = grayscale(image)
 
-    image = canny(image, low_threshold, high_threshold)
+    #image = gaussian_blur(image, kernel_size)
 
+
+    image = canny(image, low_threshold, high_threshold)
+    plt.imsave(imageOutputFolder + n + '-01.jpg', image)
     image = gaussian_blur(image, kernel_size)
-    #plt.imsave(imageOutputFolder + n + '-02.jpg', image)
+    plt.imsave(imageOutputFolder + n + '-02.jpg', image)
 
     image_All_Lines = hough_lines(image, rho, theta, threshold, min_line_length, max_line_gap, color_Red)
     image = weighted_img(image_All_Lines, image_ori)
@@ -206,12 +205,17 @@ for n in fileLists:
 ## You may also uncomment the following line for a subclip of the first 5 seconds
 ##clip1 = VideoFileClip("test_videos/solidWhiteRight.mp4").subclip(0,5)
 #
-white_output = 'test_videos_output/ZsolidWhiteRight.mp4'
+white_output = 'test_videos_output/solidWhiteRight_output.mp4'
 clip1 = VideoFileClip("test_videos/solidWhiteRight.mp4")
 white_clip = clip1.fl_image(process_image)  # NOTE: this function expects color images!!
 white_clip.write_videofile(white_output, audio=False)
 
-challenge_output = 'test_videos_output/Zchallenge.mp4'
-clip2 = VideoFileClip("test_videos/challenge.mp4")
-challenge_clip = clip2.fl_image(process_image)  # NOTE: this function expects color images!!
-challenge_clip.write_videofile(challenge_output, audio=False)
+yellow_output = 'test_videos_output/solidYellowLeft_output.mp4'
+clip2 = VideoFileClip("test_videos/solidYellowLeft.mp4")
+yellow_clip = clip2.fl_image(process_image)  # NOTE: this function expects color images!!
+yellow_clip.write_videofile(yellow_output, audio=False)
+
+# challenge_output = 'test_videos_output/Zchallenge.mp4'
+# clip2 = VideoFileClip("test_videos/challenge.mp4")
+# challenge_clip = clip2.fl_image(process_image)  # NOTE: this function expects color images!!
+# challenge_clip.write_videofile(challenge_output, audio=False)
