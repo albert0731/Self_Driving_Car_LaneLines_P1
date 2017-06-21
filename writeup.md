@@ -30,6 +30,7 @@ Here's the result before and after Gaussian Blur:
 
 ![imageBefore]  Before Gaussian Blur
 ![imageAfter] After Gaussian Blur
+
 Because of resolution, it won't been consider it's a line in Hough transfer.
 Using Gaussian Blur here will help it get more smooth.
 
