@@ -1,6 +1,5 @@
 # **Finding Lane Lines on the Road Writeup** 
 
----
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
 * Reflect on your work in a written report
@@ -12,7 +11,7 @@ The goals / steps of this project are the following:
 
 ---
 
-### Reflection
+## Reflection
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
@@ -31,6 +30,8 @@ Here's the result before and after Gaussian Blur:
 
 ![imageBefore]  Before Gaussian Blur
 ![imageAfter] After Gaussian Blur
+Because of resolution, it won't been consider it's a line in Hough transfer.
+Using Gaussian Blur here will help it get more smooth.
 
 ### 2. Identify potential shortcomings with your current pipeline
 
